@@ -1,0 +1,22 @@
+{
+  "name": "pdrdevme",
+  "version": "1.0.0",
+  "description": "Personal vCard with backend and blog area",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "author": "Pedro Medeiros",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.12"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pdrmdrs/pdrdevme.git"
+  }
+}
