@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    form(action='/login' method='post')
+        label(for='username') Username:
+        input(id='username' type='text' name='username')
+        br
+        br
+        label(for='password') Password:
+        input(id='password' type='password' name='password')
+
+        input(type='submit' value='Login')

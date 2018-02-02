@@ -10,7 +10,9 @@
   "author": "Pedro Medeiros",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.2"
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "pug": "^2.0.0-rc.4"
   },
   "devDependencies": {
     "nodemon": "^1.14.12"
