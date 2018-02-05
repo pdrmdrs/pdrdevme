@@ -1,6 +1,8 @@
 exports.enter_login_page = (req, res, next) => {
     // res.send('Login page GET');
-    res.render('login');
+    res.render('login', {
+        title: 'PdrDev - Login'
+    });
 };
 
 exports.login = (req, res, next) => {

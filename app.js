@@ -1,6 +1,7 @@
 const express       = require('express');
 const path          = require('path');
 const bodyParser    = require('body-parser');
+const morgan        = require('morgan');
 
 const routes = require('./routes');
 
@@ -14,9 +15,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(morgan('short'));
+
 app.use(routes);
 
-let port = 3000 || process.env.PORT;
+let port = process.env.PORT || 3000;
 
 app.listen(3000, () => {
     console.log('App listening on port ' + port);
