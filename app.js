@@ -4,6 +4,7 @@ const bodyParser    = require('body-parser');
 const morgan        = require('morgan');
 const mongoose      = require('mongoose');
 const session       = require('express-session');
+const config        = require('./config.json');
 
 const routes = require('./routes');
 
@@ -27,7 +28,10 @@ app.use(session({
 
 app.use(routes);
 
-let mongoDB = 'mongodb://127.0.0.1/pdrdev';
+
+let mongoDB = config.dburl.replace('<dbuser>', config.dbuser).
+                    replace('<dbpassword>', config.dbpassword);
+
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
 let db = mongoose.connection;

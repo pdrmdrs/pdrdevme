@@ -1,0 +1,5 @@
+{
+  "dbuser":"dbuser",
+  "dbpassword": "dbpassword",
+  "dburl":"mongodb://<dbuser>:<dbpassword>@domain:port/dbname"
+}
