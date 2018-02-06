@@ -4,6 +4,8 @@ const router = express.Router();
 //route for the login page
 router.use(require('./login_route'));
 
+//route for the user create page
+router.use(require('./user_route'));
 //entry page for the app
 router.get('/', (req, res, next) => {
     // res.send('Olá mundo!')

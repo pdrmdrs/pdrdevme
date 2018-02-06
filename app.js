@@ -2,6 +2,8 @@ const express       = require('express');
 const path          = require('path');
 const bodyParser    = require('body-parser');
 const morgan        = require('morgan');
+const mongoose      = require('mongoose');
+const session       = require('express-session');
 
 const routes = require('./routes');
 
@@ -17,7 +19,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(morgan('short'));
 
+app.use(session({
+    secret: 'work hard',
+    resave: true,
+    saveUninitialized: false
+}));
+
 app.use(routes);
+
+let mongoDB = 'mongodb://127.0.0.1/pdrdev';
+mongoose.connect(mongoDB);
+mongoose.Promise = global.Promise;
+let db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection Error'));
 
 let port = process.env.PORT || 3000;
 

@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+    form(action='/user' method='post')
+        label(for='username') Username:
+        input(id='username' type='text' name='username')
+        br
+        br
+        label(for='email') Email:
+        input(id='email' type='text' name='email')
+        br
+        br
+        label(for='password_conf') Password Configuration:
+        input(id='password_conf' type='text' name='passwordConf')
+        br
+        br
+        label(for='password') Password:
+        input(id='password' type='password' name='password')
+        br
+        br
+        input(type='submit' value='Create User')
+
+    a(href='/') Home
