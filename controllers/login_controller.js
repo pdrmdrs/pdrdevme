@@ -19,6 +19,7 @@ exports.login = (req, res, next) => {
         } else {
             req.session.user_id = user._id;
             console.log('Username = ' + user.username);
+            console.log('Username._id = ' + user._id + ' ---- ' + 'req.session.user_id = ' + req.session.user_id);
             res.redirect('/dashboard');//TODO: make a router for the dashboard
         }
     });

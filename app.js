@@ -4,6 +4,8 @@ const bodyParser    = require('body-parser');
 const morgan        = require('morgan');
 const mongoose      = require('mongoose');
 const session       = require('express-session');
+const flash         = require('connect-flash');
+const cookieParser  = require('cookie-parser');
 const config        = require('./config.json');
 
 const routes = require('./routes');
@@ -20,14 +22,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(morgan('short'));
 
+app.use(cookieParser('secret'));
+
+let storeSession = new session.MemoryStore;
+
 app.use(session({
-    secret: 'work hard',
+    cookie: { maxAge: 60000 },
+    store: storeSession,
+    secret: 'secret',
     resave: true,
     saveUninitialized: false
 }));
+app.use(flash());
 
 app.use(routes);
-
 
 let mongoDB = config.dburl.replace('<dbuser>', config.dbuser).
                     replace('<dbpassword>', config.dbpassword);

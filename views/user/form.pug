@@ -2,22 +2,20 @@ extends ../layout
 
 block content
     form(action='/user' method='post')
-        label(for='username') Username:
-        input(id='username' type='text' name='username')
-        br
-        br
-        label(for='email') Email:
-        input(id='email' type='text' name='email')
-        br
-        br
-        label(for='password_conf') Password Configuration:
-        input(id='password_conf' type='text' name='passwordConf')
-        br
-        br
-        label(for='password') Password:
-        input(id='password' type='password' name='password')
-        br
-        br
-        input(type='submit' value='Create User')
+        div.form-group
+            label(for='username') Username:
+            input(id='username' class='form-control' type='text' name='username')
+            br
+            label(for='email') Email:
+            input(id='email' class='form-control' type='text' name='email')
+            br
+            label(for='password') Password:
+            input(id='password' class='form-control' type='password' name='password')
+            br
+            label(for='password_conf') Password Confirmation:
+            input(id='password_conf' class='form-control' type='password' name='passwordConf')
+            br
+            input(type='submit' class='btn btn-primary btn-block' value='Create User')
 
+    br
     a(href='/') Home

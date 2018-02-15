@@ -8,9 +8,9 @@ router.use(require('./login_route'));
 router.use(require('./user_route'));
 //entry page for the app
 router.get('/', (req, res, next) => {
-    // res.send('Olá mundo!')
     res.render('index', {
-        title: 'PdrDev - vCard'
+        title: 'PdrDev - vCard',
+        messages: req.flash()
     });
 });
 router.get('/index', (req, res, next) => {

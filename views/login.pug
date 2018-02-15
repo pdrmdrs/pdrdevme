@@ -2,13 +2,14 @@ extends layout
 
 block content
     form(action='/login' method='post')
-        label(for='email') E-mail:
-        input(id='email' type='text' name='email')
-        br
-        br
-        label(for='password') Password:
-        input(id='password' type='password' name='password')
+        div.form-group
+            label(for='email') E-mail:
+            input(id='email' class='form-control' type='text' name='email' placeholder='Email address')
+            br
+            label(for='password') Password:
+            input(id='password' class='form-control' type='password' name='password' placeholder='Password')
 
-        input(type='submit' value='Login')
+        input(type='submit' class='btn btn-primary btn-block' value='Login')
 
+    br
     a(href='/') Home
