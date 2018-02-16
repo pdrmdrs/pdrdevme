@@ -1,18 +1,21 @@
 const User = require('../domain/User');
 
-exports.create_user_page = (req, res, next) => {
-    // res.send('Login page GET');
+let validation = {
+    type: '',
+    message: ''
+};
+
+exports.create_user_page = (req, res) => {
     res.render('user/form', {
         title: 'PdrDev - Create new User',
-        message: req.flash()
+        messages: req.flash()
     });
 };
 
 exports.create_user = (req, res, next) => {
 
-    let validation = validateInput(req.body);
+    validation = validateInput(req.body);
 
-    console.log(validation.type + " " + validation.message);
     req.flash(validation.type, validation.message);
 
     if (validation.validated) {
@@ -22,7 +25,7 @@ exports.create_user = (req, res, next) => {
             password: req.body.password
         };
         //use schema.create to insert data into the db
-        User.create(userData, function (err, user) {
+        User.create(userData, function (err) {
             if (err) {
                 return next(err)
             } else {
@@ -35,19 +38,21 @@ exports.create_user = (req, res, next) => {
 };
 
 function validateInput(input) {
-    let result = {};
+    let result = {
+        validated: false,
+        type: '',
+        message: ''
+    };
     if(input) {
-        result.validated = true;
         if(input.password === input.passwordConf) {
-            result.type = 'sucess';
+            result.validated = true;
+            result.type = 'success';
             result.message = 'User created!';
         } else {
-            result.validated = false;
             result.type = 'danger';
             result.message = "Password didn't match.";
         }
     } else {
-        result.validated = false;
         result.type = 'danger'; //sucess, info, warning, danger
         result.message = 'User should put an input.';
     }
