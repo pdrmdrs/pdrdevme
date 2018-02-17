@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+
+    ul
+    each user in user_list
+        li
+            a(href=user.url) #{user.username}
+
+    else
+        li There are no users.
+
+    br
+    a(href='/') Home

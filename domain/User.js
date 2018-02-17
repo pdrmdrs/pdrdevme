@@ -20,6 +20,10 @@ const UserSchema = new mongoose.Schema({
     }
 });
 
+UserSchema.virtual('url').get(function () {
+   return '/users/' + this._id;
+});
+
 UserSchema.pre('save', function (next) {
    let user = this;
    bcrypt.hash(user.password, 10, (err, hash) => {

@@ -31,7 +31,39 @@ exports.create_user = (req, res) => {
         });
     }
 
-    res.redirect('/user');
+    res.redirect('/users');
+};
+
+exports.user_list = (req, res) => {
+    User.find({}, 'username email').exec(function (err, list) {
+       if (err){
+           req.flash('danger', err.message);
+           res.redirect('/');
+       } else {
+           res.render('user/list', {
+               title: 'PdrDev - Users list',
+               messages: req.flash(),
+               user_list: list
+           });
+       }
+
+    });
+};
+
+exports.user_detail = (req, res) => {
+    User.findById(req.params.id).exec(function (err, result) {
+       if(err) {
+           req.flash('danger', err.message);
+           res.redirect('/');
+       } else {
+           res.render('user/detail', {
+               title: 'PdrDev - User detail',
+               messages: req.flash(),
+               username: result.username,
+               email: result.email,
+           });
+       }
+    });
 };
 
 function validateInput(input) {
