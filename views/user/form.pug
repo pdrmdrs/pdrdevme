@@ -4,16 +4,16 @@ block content
     form(action='/user' method='post')
         div.form-group
             label(for='username') Username:
-            input(id='username' class='form-control' type='text' name='username')
+            input(id='username' class='form-control' type='text' name='username' placeholder='Username')
             br
             label(for='email') Email:
-            input(id='email' class='form-control' type='text' name='email')
+            input(id='email' class='form-control' type='text' name='email' placeholder='E-mail')
             br
             label(for='password') Password:
-            input(id='password' class='form-control' type='password' name='password')
+            input(id='password' class='form-control' type='password' name='password' placeholder='Password')
             br
             label(for='password_conf') Password Confirmation:
-            input(id='password_conf' class='form-control' type='password' name='passwordConf')
+            input(id='password_conf' class='form-control' type='password' name='passwordConf' placeholder='Repeat password')
             br
             input(type='submit' class='btn btn-primary btn-block' value='Create User')
 

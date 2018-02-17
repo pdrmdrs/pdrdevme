@@ -26,36 +26,51 @@ exports.create_user = (req, res, next) => {
         };
         //use schema.create to insert data into the db
         User.create(userData, function (err) {
-            if (err) {
-                return next(err)
-            } else {
-                res.redirect('/');
-            }
+            if (err)
+                req.flash('danger', err.message);
         });
-    } else {
-        res.redirect('/user');
     }
+
+    res.redirect('/user');
 };
 
 function validateInput(input) {
     let result = {
-        validated: false,
+        validated: null, //success, info, warning, danger
         type: '',
         message: ''
     };
     if(input) {
-        if(input.password === input.passwordConf) {
-            result.validated = true;
-            result.type = 'success';
-            result.message = 'User created!';
-        } else {
-            result.type = 'danger';
-            result.message = "Password didn't match.";
+        if(input.username == ""){
+            result.validated = false; result.type = 'danger'; result.message = 'Username required.';
+            return result;
+        }
+
+        if(input.email == ""){
+            result.validated = false; result.type = 'danger'; result.message = 'E-mail required.';
+            return result;
+        }
+
+        if(input.password == ""){
+            result.validated = false; result.type = 'danger'; result.message = 'Password required.';
+            return result;
+        }
+
+        if(input.passwordConf == ""){
+            result.validated = false; result.type = 'danger'; result.message = 'Repeat password required.';
+            return result;
+        }
+
+        if(result.validated === null && input.password === input.passwordConf) {
+            result.validated = true; result.type = 'success'; result.message = 'User created!';
+            return result;
+        } else if (result.validated === null && input.password !== input.passwordConf){
+            result.type = false; result.type = 'danger'; result.message = "Password didn't match.";
+            return result;
         }
     } else {
-        result.type = 'danger'; //sucess, info, warning, danger
-        result.message = 'User should put an input.';
+        result.validated = false; result.type = 'danger'; result.message = 'User should put an input.';
+        return result;
     }
 
-    return result;
 }
