@@ -12,7 +12,7 @@ exports.create_user_page = (req, res) => {
     });
 };
 
-exports.create_user = (req, res, next) => {
+exports.create_user = (req, res) => {
 
     validation = validateInput(req.body);
 
@@ -41,22 +41,22 @@ function validateInput(input) {
         message: ''
     };
     if(input) {
-        if(input.username == ""){
+        if(input.username === ""){
             result.validated = false; result.type = 'danger'; result.message = 'Username required.';
             return result;
         }
 
-        if(input.email == ""){
+        if(input.email === ""){
             result.validated = false; result.type = 'danger'; result.message = 'E-mail required.';
             return result;
         }
 
-        if(input.password == ""){
+        if(input.password === ""){
             result.validated = false; result.type = 'danger'; result.message = 'Password required.';
             return result;
         }
 
-        if(input.passwordConf == ""){
+        if(input.passwordConf === ""){
             result.validated = false; result.type = 'danger'; result.message = 'Repeat password required.';
             return result;
         }
